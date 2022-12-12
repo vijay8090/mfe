@@ -29,21 +29,11 @@ jobs:
           aws-secret-access-key: ${{ secrets. AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Copy files to the s3 website content bucket
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_NAME }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
-          SOURCE_DIR: './dist'      # optional: defaults to entire repository
-          DEST_DIR: '/container/latest'      # optional: defaults to entire repository
 
-#      - name: Copy files to the s3 website content bucket
-#        run:
-#          aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
+
+      - name: Copy files to the s3 website content bucket
+        run:
+         aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest --delete --acl public-read
 
       # Invalidate CloudFront (this action)
       - name: Invalidate CloudFront
