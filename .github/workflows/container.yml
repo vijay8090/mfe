@@ -30,7 +30,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Copy files to the s3 website content bucket
-      - uses: jakejarvis/s3-sync-action@master
+        uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
