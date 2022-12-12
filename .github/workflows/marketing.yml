@@ -27,21 +27,9 @@ jobs:
           aws-secret-access-key: ${{ secrets. AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Remove from S3
-        uses: vitorsgomes/s3-rm-action@master
-        with:
-          args: --recursive
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET_NAME }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          PATH_TO_DELETE: 'marketing/latest/'
-
-
       - name: Copy files to the s3 website content bucket
         run:
-          aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/marketing/latest
+          aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/marketing/latest --delete
 
       # Invalidate CloudFront (this action)
       - name: Invalidate CloudFront
