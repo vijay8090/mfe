@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
-  productionPrefix :'ma',
+  productionPrefix : 'mar-',
 })
 
 import Landing from './components/Landing';
