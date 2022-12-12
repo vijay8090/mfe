@@ -8,7 +8,6 @@ const MarketingApp = () => {
         marketingMount(ref.current);
     })
 
-
     return <div ref={ref}> </div>
 
 }
