@@ -81,6 +81,15 @@ export default function Header({ isSignedIn, onSignOut }) {
           >
             MFE App - Container Header
           </Typography>
+{/*          <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              component={RouterLink}
+              to="/dashboard"
+          >
+            Dashboard
+          </Typography>*/}
           <Button
             color="primary"
             variant="outlined"

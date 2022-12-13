@@ -1,15 +1,15 @@
-name: deploy-marketing
+name: deploy-dashboard
 
 on:
   push:
     branches:
       - development
     paths:
-      - 'packages/marketing/**'
+      - 'packages/dashboard/**'
 
 defaults:
   run:
-    working-directory: packages/marketing
+    working-directory: packages/dashboard
 
 jobs:
   build:
@@ -29,14 +29,14 @@ jobs:
 
       - name: Copy files to the s3 website content bucket
         run:
-          aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/marketing/latest --delete
+          aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/dashboard/latest --delete
 
       # Invalidate CloudFront (this action)
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
           DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
-          PATHS: "/marketing/latest/*"
+          PATHS: "/dashboard/latest/*"
           AWS_REGION: "us-east-1"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
