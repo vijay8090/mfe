@@ -79,7 +79,7 @@ export default function Header({ isSignedIn, onSignOut }) {
             component={RouterLink}
             to="/"
           >
-            MFE App - Container Header
+            MFE - Container Header
           </Typography>
 {/*          <Typography
               variant="h6"
